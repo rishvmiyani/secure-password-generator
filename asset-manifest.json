@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/secure-password-generator/static/css/main.965baa0b.css",
+    "main.js": "/secure-password-generator/static/js/main.bf5ef638.js",
+    "static/media/SPIRITTIMORRegular.woff": "/secure-password-generator/static/media/SPIRITTIMORRegular.4629c8db50c22e042257.woff",
+    "static/media/SPIRITTIMORRegular.woff2": "/secure-password-generator/static/media/SPIRITTIMORRegular.59f936782adf339ce8a0.woff2",
+    "index.html": "/secure-password-generator/index.html",
+    "main.965baa0b.css.map": "/secure-password-generator/static/css/main.965baa0b.css.map",
+    "main.bf5ef638.js.map": "/secure-password-generator/static/js/main.bf5ef638.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.965baa0b.css",
+    "static/js/main.bf5ef638.js"
+  ]
+}
