@@ -24,6 +24,8 @@ input[type="text"] {
 input[type="range"] {
   width: 100%;
   accent-color: #00ffcc;
+  transition: accent-color 0.3s;
+  cursor: crosshair;
 }
 
 .strength-selector {
@@ -39,7 +41,7 @@ input[type="range"] {
   color: white;
   padding: 10px;
   border-radius: 10px;
-  cursor: pointer;
+  cursor: crosshair;
   transition: 0.3s;
   width: 80px;
   text-align: center;
@@ -49,6 +51,7 @@ input[type="range"] {
 .strength-selector button:hover {
   background-color: #00ffcc;
   color: black;
+  box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc;
 }
 
 .generate-btn {
@@ -65,6 +68,7 @@ input[type="range"] {
 
 .generate-btn:hover {
   background: #00c9a7;
+  box-shadow: 0 0 10px #00c9a7, 0 0 20px #00c9a7;
 }
 
 .password-output {
@@ -76,12 +80,14 @@ input[type="range"] {
   width: 400px;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0 0 10px #00ffcc;
+  font-family: 'SPIRIT TIMOR', sans-serif;
 }
 
 @font-face {
   font-family: 'SPIRIT TIMOR';
-  src: url('./fonts/SPIRITTIMORRegular.woff2') format('WOFF2'),
-       url('./fonts/SPIRITTIMORRegular.woff') format('WOFF');
+  src: url('./fonts/SPIRITTIMORRegular.woff2') format('woff2'),
+       url('./fonts/SPIRITTIMORRegular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
