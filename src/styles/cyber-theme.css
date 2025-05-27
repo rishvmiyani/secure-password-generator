@@ -1,0 +1,390 @@
+/* cyber-theme.css */
+
+:root {
+  --bg-dark: #0f111a;
+  --bg-gradient: linear-gradient(135deg, #00f7ff, #ff00de);
+  --neon-blue: #00f7ff;
+  --neon-pink: #ff00de;
+  --text-light: #e0e0ff;
+  --text-muted: #9999bb;
+  --accent: #ff0055;
+  --glass: rgba(255, 255, 255, 0.08);
+  --shadow-neon-blue: #00f7ffcc;
+  --shadow-neon-pink: #ff00decc;
+  --font: 'Poppins', sans-serif;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font);
+}
+
+body {
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+  color: #fff;
+  font-family: 'SPIRIT TIMOR', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+/* Container */
+.app-container {
+  background: var(--glass);
+  border-radius: 16px;
+  box-shadow:
+    0 0 20px var(--shadow-neon-blue),
+    inset 0 0 40px var(--glass);
+  padding: 2.5rem 3rem;
+  width: 100%;
+  max-width: 460px;
+  backdrop-filter: saturate(180%) brightness(130%);
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+@font-face {
+  font-family: 'SPIRIT TIMOR';
+  src: url('./fonts/SPIRITTIMORRegular.woff2') format('WOFF2'),
+       url('./fonts/SPIRITTIMORRegular.woff') format('WOFF');
+  font-weight: normal;
+  font-style: normal;
+} 
+
+/* Title */
+.title {
+  font-family: 'SPIRIT TIMOR', sans-serif;
+  font-size: 3.5rem;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+
+  /* Subtle Neon Glow Effect */
+  text-shadow:
+    0 0 2px #00fff7,
+    0 0 4px #00fff7,
+    0 0 6px #00fff7,
+    0 0 8px #ff00ff,
+    0 0 10px #ff00ff;
+
+  transition: all 0.3s ease;
+}
+
+.title:hover {
+  /* Boost glow on hover */
+  text-shadow:
+    0 0 10px #00fff7,
+    0 0 20px #00fff7,
+    0 0 40px #ff00ff,
+    0 0 70px #ff00ff;
+  transform: scale(1.05);
+}
+
+/* Input groups */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.4rem;
+  color: var(--text-muted);
+}
+
+.input-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+  user-select: text;
+}
+
+.input-field {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  background: #121522;
+  color: var(--text-light);
+  box-shadow:
+    inset 0 0 6px #20293a;
+  transition: box-shadow 0.25s ease;
+}
+
+.input-field:focus {
+  box-shadow:
+    0 0 12px var(--neon-blue),
+    inset 0 0 8px var(--neon-blue);
+}
+
+/* Password Type Selector */
+.password-type-selector {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+  user-select: none;
+}
+
+.password-type-option {
+  flex: 1;
+  text-align: center;
+  padding: 0.65rem 0;
+  margin: 0 5px;
+  border-radius: 10px;
+  background: #14192b;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-size: 1.05rem;
+  box-shadow:
+    inset 0 0 8px #0b0d15;
+  transition: all 0.25s ease;
+  user-select: none;
+  position: relative;
+}
+
+.password-type-option:hover,
+.password-type-option:focus-visible {
+  color: var(--neon-pink);
+  box-shadow:
+    0 0 16px var(--neon-pink),
+    inset 0 0 16px var(--neon-pink);
+  transform: scale(1.1);
+  z-index: 10;
+  font-weight: 700;
+}
+
+/* Active Tab */
+.password-type-option.active {
+  background: #201c2e;
+  color: var(--neon-pink);
+  box-shadow:
+    0 0 18px var(--neon-pink),
+    inset 0 0 16px var(--neon-pink);
+  font-weight: 700;
+  transform: scale(1.12);
+  user-select: text;
+  z-index: 20;
+}
+
+/* Password Strength Selector */
+.password-strength-selector {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.6rem;
+  user-select: none;
+}
+
+.password-strength-option {
+  flex: 1;
+  margin: 0 6px;
+  padding: 0.6rem 0;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  background: #14192b;
+  cursor: pointer;
+  box-shadow: inset 0 0 8px #0b0d15;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.password-strength-option:hover,
+.password-strength-option:focus-visible {
+  color: var(--neon-blue);
+  box-shadow:
+    0 0 16px var(--neon-blue),
+    inset 0 0 16px var(--neon-blue);
+  transform: scale(1.1);
+  z-index: 10;
+  font-weight: 700;
+}
+
+.password-strength-option.active {
+  background: #201c2e;
+  color: var(--neon-blue);
+  box-shadow:
+    0 0 20px var(--neon-blue),
+    inset 0 0 18px var(--neon-blue);
+  font-weight: 700;
+  transform: scale(1.12);
+  user-select: text;
+  z-index: 20;
+}
+
+/* Slider */
+.slider-group {
+  margin-bottom: 1.4rem;
+}
+
+input[type="range"].slider {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 8px;
+  background: #14192b;
+  border-radius: 8px;
+  box-shadow: inset 0 0 6px #0b0d15;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+input[type="range"].slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  background: var(--neon-pink);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--neon-pink);
+  transition: box-shadow 0.3s ease;
+}
+
+input[type="range"].slider::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 16px var(--neon-pink);
+}
+
+input[type="range"].slider:focus {
+  outline: none;
+  background: #1a1e35;
+}
+
+/* Checkbox group */
+.checkbox-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.checkbox-group label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: var(--neon-pink);
+  cursor: pointer;
+}
+
+/* Generate Button */
+.generate-button {
+  width: 100%;
+  padding: 0.85rem 0;
+  background: var(--neon-pink);
+  color: #0f111a;
+  font-weight: 700;
+  font-size: 1.15rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 20px var(--neon-pink);
+  transition: background 0.3s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.generate-button:hover {
+  background: #ff3ac9;
+  transform: scale(1.05);
+  box-shadow: 0 0 30px #ff3ac9;
+}
+
+/* Output Section */
+.output-section {
+  margin-top: 1.8rem;
+  user-select: text;
+}
+
+.output-section label {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  display: block;
+  color: var(--neon-pink);
+  text-shadow:
+    0 0 8px var(--neon-pink),
+    0 0 14px var(--neon-pink);
+}
+
+.password-output {
+  background: #121522;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow:
+    inset 0 0 12px var(--shadow-neon-pink);
+  color: var(--text-light);
+  user-select: all;
+}
+
+.password-output code {
+  user-select: all;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 85%;
+}
+
+/* Icon buttons */
+.icon-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--neon-pink);
+  padding: 4px;
+  margin-left: 12px;
+  transition: color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.icon-button:hover {
+  color: #ff62d6;
+  transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .app-container {
+    padding: 2rem 1.5rem;
+    max-width: 100%;
+  }
+  .password-type-selector,
+  .password-strength-selector {
+    flex-direction: column;
+  }
+  .password-type-option,
+  .password-strength-option {
+    margin: 6px 0;
+  }
+}
