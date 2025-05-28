@@ -6,7 +6,6 @@ const PASSWORD_TYPES = ["Random", "Memorable", "PIN"];
 const PASSWORD_STRENGTHS = ["Easy", "Medium", "Hard", "Extreme"];
 
 const randomChar = (chars) => chars[Math.floor(Math.random() * chars.length)];
-
 const generateRandomPassword = (length, includeNumbers, includeSymbols, name, number) => {
   const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const numbers = "0123456789";
@@ -30,11 +29,7 @@ const generateRandomPassword = (length, includeNumbers, includeSymbols, name, nu
 };
 
 const generateMemorablePassword = (length, name, number) => {
-  const syllables = [
-    "ba", "be", "bi", "bo", "bu",
-    "la", "le", "li", "lo", "lu",
-    "ra", "re", "ri", "ro", "ru",
-  ];
+  const syllables = ["ba", "be", "bi", "bo", "bu", "la", "le", "li", "lo", "lu", "ra", "re", "ri", "ro", "ru"];
   let passwordArr = [];
   let base = name + number;
   let baseLen = base.length;
@@ -76,6 +71,7 @@ export default function App() {
   const [passwordStrength, setPasswordStrength] = useState("Hard");
   const [generatedPassword, setGeneratedPassword] = useState("");
 
+  // Adjust length based on strength automatically (optional)
   useEffect(() => {
     switch (passwordStrength) {
       case "Easy":
@@ -96,6 +92,8 @@ export default function App() {
   }, [passwordStrength]);
 
   const handleGenerate = () => {
+    
+
     let pwd = "";
     if (passwordType === "Random") {
       pwd = generateRandomPassword(length, includeNumbers, includeSymbols, name, number);
@@ -104,6 +102,7 @@ export default function App() {
     } else if (passwordType === "PIN") {
       pwd = generatePIN(length, number);
     }
+
     setGeneratedPassword(pwd);
   };
 
@@ -114,81 +113,72 @@ export default function App() {
   };
 
   return (
-    <div className="app-container" role="main" tabIndex={-1}>
-      <h1 className="app-title">Cyber Secure Password Generator 🔐</h1>
+    <div className="app-container">
+      <h1 className="title">Cyber Secure Password Generator 🔐</h1>
 
-      <label htmlFor="nameInput" className="input-label">Name (base for password)</label>
-      <input
-        id="nameInput"
-        type="text"
-        placeholder="Enter your name"
-        value={name}
-        onChange={(e) => setName(e.target.value.trim())}
-        maxLength={20}
-        className="input-field"
-        autoComplete="off"
-        spellCheck="false"
-      />
-
-      <label htmlFor="numberInput" className="input-label">Number (base for password)</label>
-      <input
-        id="numberInput"
-        type="text"
-        placeholder="Enter a number"
-        value={number}
-        onChange={(e) => setNumber(e.target.value.trim())}
-        maxLength={20}
-        className="input-field"
-        autoComplete="off"
-        spellCheck="false"
-      />
-
-      <div className="selector-group">
-        <div className="selector-label">Password Type:</div>
-        <div className="button-group">
-          {PASSWORD_TYPES.map((type) => (
-            <button
-              key={type}
-              className={passwordType === type ? "btn active" : "btn"}
-              onClick={() => setPasswordType(type)}
-              aria-pressed={passwordType === type}
-              type="button"
-            >
-              {type}
-            </button>
-          ))}
-        </div>
+      <div className="input-group">
+        <label>Name (base for password)</label>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          value={name}
+          onChange={(e) => setName(e.target.value.trim())}
+          maxLength={20}
+          className="input-field"
+        />
       </div>
 
-      <div className="selector-group">
-        <div className="selector-label">Strength:</div>
-        <div className="button-group">
-          {PASSWORD_STRENGTHS.map((level) => (
-            <button
-              key={level}
-              className={passwordStrength === level ? "btn active" : "btn"}
-              onClick={() => setPasswordStrength(level)}
-              aria-pressed={passwordStrength === level}
-              type="button"
-            >
-              {level}
-            </button>
-          ))}
-        </div>
+      <div className="input-group">
+        <label>Number (base for password)</label>
+        <input
+          type="text"
+          placeholder="Enter a number"
+          value={number}
+          onChange={(e) => setNumber(e.target.value.trim())}
+          maxLength={20}
+          className="input-field"
+        />
       </div>
 
-      <label className="input-label">
-        Password Length: <span className="length-value">{length}</span>
-      </label>
-      <input
-        type="range"
-        min="8"
-        max="50"
-        value={length}
-        onChange={(e) => setLength(Number(e.target.value))}
-        className="slider"
-        disabled
-      />
+      <div className="password-type-selector">
+        {PASSWORD_TYPES.map((type) => (
+          <div
+            key={type}
+            className={`password-type-option ${
+              passwordType === type ? "active" : ""
+            }`}
+            onClick={() => setPasswordType(type)}
+          >
+            {type}
+          </div>
+        ))}
+      </div>
+
+      <div className="password-strength-selector">
+        {PASSWORD_STRENGTHS.map((level) => (
+          <div
+            key={level}
+            className={`password-strength-option ${
+              passwordStrength === level ? "active" : ""
+            }`}
+            onClick={() => setPasswordStrength(level)}
+          >
+            {level}
+          </div>
+        ))}
+      </div>
+
+      <div className="input-group slider-group">
+        <label>Password Length: {length}</label>
+        <input
+          type="range"
+          min="8"
+          max="50"
+          value={length}
+          onChange={(e) => setLength(Number(e.target.value))}
+          className="slider"
+        />
+      </div>
 
       <div className="checkbox-group">
         <label>
@@ -196,7 +186,7 @@ export default function App() {
             type="checkbox"
             checked={includeNumbers}
             onChange={() => setIncludeNumbers(!includeNumbers)}
-            disabled={passwordType === "PIN"}
+            disabled={passwordType === "PIN"} // PIN does not use these options
           />
           Include Numbers
         </label>
@@ -212,31 +202,20 @@ export default function App() {
         </label>
       </div>
 
-      <button className="generate-btn" onClick={handleGenerate} type="button">
+      <button className="generate-button" onClick={handleGenerate}>
         Generate Password
       </button>
 
       {generatedPassword && (
-        <div className="password-output" aria-live="polite">
-          <code>{generatedPassword}</code>
-          <div className="icon-buttons">
-            <button
-              className="icon-btn"
-              onClick={copyToClipboard}
-              title="Copy Password"
-              aria-label="Copy Password"
-              type="button"
-            >
-              <Copy size={24} />
+        <div className="output-section">
+          <label>Your Secure Password:</label>
+          <div className="password-output">
+            <code>{generatedPassword}</code>
+            <button className="icon-button" onClick={copyToClipboard} title="Copy Password">
+              <Copy size={20} />
             </button>
-            <button
-              className="icon-btn"
-              onClick={handleGenerate}
-              title="Refresh Password"
-              aria-label="Refresh Password"
-              type="button"
-            >
-              <RefreshCw size={24} />
+            <button className="icon-button" onClick={handleGenerate} title="Refresh Password">
+              <RefreshCw size={20} />
             </button>
           </div>
         </div>
@@ -244,4 +223,3 @@ export default function App() {
     </div>
   );
 }
-
