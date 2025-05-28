@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Copy, RefreshCw } from "lucide-react";
-import "./cyber-theme.css";
+import "./styles/cyber-theme.css";
 
 const PASSWORD_TYPES = ["Random", "Memorable", "PIN"];
 const PASSWORD_STRENGTHS = ["Easy", "Medium", "Hard", "Extreme"];
